@@ -1,0 +1,13 @@
+# Invariant charter: protected rules that no patch may remove or weaken (spec section 5.3).
+checklist_items: [harness_inspected, edge_protection, ppe_check, permit_to_work]
+required_workflow_steps:
+  safety_checklist: [ask_harness_inspected, ask_edge_protection, ask_ppe, ask_permit]
+  tender_extract: [extract_deadline, extract_emd, extract_eligibility]
+required_tools:
+  clause_query: [clause_lookup]
+required_fields:
+  tender_extract: [deadline, emd, eligibility]
+# Rules whose text matches any pattern instruct skipping or weakening a safety check.
+forbidden_rule_patterns:
+  - '\b(skip|ignore|bypass|disable|waive|weaken|omit)\b.{0,40}\b(check|inspection|harness|ppe|permit|safety|protection)\b'
+  - 'SKIP_CHECK:'

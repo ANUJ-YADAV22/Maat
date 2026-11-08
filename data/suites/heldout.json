@@ -1,0 +1,483 @@
+[
+  {
+    "id": "held_clause_01",
+    "family": "clause_query",
+    "input": "What is the min_cover_mm of cover:severe?",
+    "checker": {
+      "type": "regex",
+      "pattern": "\\bis 47\\b"
+    },
+    "tags": [
+      "heldout"
+    ],
+    "subject_keys": [
+      "cover:severe"
+    ],
+    "suite": "heldout"
+  },
+  {
+    "id": "held_clause_02",
+    "family": "clause_query",
+    "input": "What is the min_cover_mm of cover:extreme?",
+    "checker": {
+      "type": "regex",
+      "pattern": "\\bis 62\\b"
+    },
+    "tags": [
+      "heldout"
+    ],
+    "subject_keys": [
+      "cover:extreme"
+    ],
+    "suite": "heldout"
+  },
+  {
+    "id": "held_clause_03",
+    "family": "clause_query",
+    "input": "What is the min_length_mm of anchorage:bond?",
+    "checker": {
+      "type": "regex",
+      "pattern": "\\bis 410\\b"
+    },
+    "tags": [
+      "heldout"
+    ],
+    "subject_keys": [
+      "anchorage:bond"
+    ],
+    "suite": "heldout"
+  },
+  {
+    "id": "held_clause_04",
+    "family": "clause_query",
+    "input": "What is the min_thickness_mm of slab:thickness?",
+    "checker": {
+      "type": "regex",
+      "pattern": "\\bis 118\\b"
+    },
+    "tags": [
+      "heldout"
+    ],
+    "subject_keys": [
+      "slab:thickness"
+    ],
+    "suite": "heldout"
+  },
+  {
+    "id": "held_clause_05",
+    "family": "clause_query",
+    "input": "What is the max_deg of ladder:angle?",
+    "checker": {
+      "type": "regex",
+      "pattern": "\\bis 74\\b"
+    },
+    "tags": [
+      "heldout"
+    ],
+    "subject_keys": [
+      "ladder:angle"
+    ],
+    "suite": "heldout"
+  },
+  {
+    "id": "held_incident_01",
+    "family": "incident_triage",
+    "input": "Site report. What is the severity of incident:fall_from_height?",
+    "checker": {
+      "type": "contains_all",
+      "items": [
+        "critical"
+      ]
+    },
+    "tags": [
+      "heldout"
+    ],
+    "subject_keys": [
+      "incident:fall_from_height"
+    ],
+    "suite": "heldout"
+  },
+  {
+    "id": "held_incident_02",
+    "family": "incident_triage",
+    "input": "Supervisor note. What is the severity of incident:electric_shock?",
+    "checker": {
+      "type": "contains_all",
+      "items": [
+        "critical"
+      ]
+    },
+    "tags": [
+      "heldout"
+    ],
+    "subject_keys": [
+      "incident:electric_shock"
+    ],
+    "suite": "heldout"
+  },
+  {
+    "id": "held_incident_03",
+    "family": "incident_triage",
+    "input": "Daily log. What is the severity of incident:trench_collapse?",
+    "checker": {
+      "type": "contains_all",
+      "items": [
+        "critical"
+      ]
+    },
+    "tags": [
+      "heldout"
+    ],
+    "subject_keys": [
+      "incident:trench_collapse"
+    ],
+    "suite": "heldout"
+  },
+  {
+    "id": "held_incident_04",
+    "family": "incident_triage",
+    "input": "Audit finding. What is the severity of incident:minor_cut?",
+    "checker": {
+      "type": "contains_all",
+      "items": [
+        "minor"
+      ]
+    },
+    "tags": [
+      "heldout"
+    ],
+    "subject_keys": [
+      "incident:minor_cut"
+    ],
+    "suite": "heldout"
+  },
+  {
+    "id": "held_incident_05",
+    "family": "incident_triage",
+    "input": "Near-miss form. What is the severity of incident:fire_small?",
+    "checker": {
+      "type": "contains_all",
+      "items": [
+        "moderate"
+      ]
+    },
+    "tags": [
+      "heldout"
+    ],
+    "subject_keys": [
+      "incident:fire_small"
+    ],
+    "suite": "heldout"
+  },
+  {
+    "id": "held_unit_01",
+    "family": "unit_calc",
+    "input": "CONVERT: 2.5 m -> mm",
+    "checker": {
+      "type": "numeric_close",
+      "expected": 2500.0
+    },
+    "tags": [
+      "heldout"
+    ],
+    "subject_keys": [
+      "unit:convert"
+    ],
+    "suite": "heldout"
+  },
+  {
+    "id": "held_unit_02",
+    "family": "unit_calc",
+    "input": "CONVERT: 12 kn -> n",
+    "checker": {
+      "type": "numeric_close",
+      "expected": 12000.0
+    },
+    "tags": [
+      "heldout"
+    ],
+    "subject_keys": [
+      "unit:convert"
+    ],
+    "suite": "heldout"
+  },
+  {
+    "id": "held_unit_03",
+    "family": "unit_calc",
+    "input": "CONVERT: 0.75 km -> m",
+    "checker": {
+      "type": "numeric_close",
+      "expected": 750.0
+    },
+    "tags": [
+      "heldout"
+    ],
+    "subject_keys": [
+      "unit:convert"
+    ],
+    "suite": "heldout"
+  },
+  {
+    "id": "held_unit_04",
+    "family": "unit_calc",
+    "input": "COMPUTE: 6*7",
+    "checker": {
+      "type": "numeric_close",
+      "expected": 42.0
+    },
+    "tags": [
+      "heldout"
+    ],
+    "subject_keys": [
+      "unit:arith"
+    ],
+    "suite": "heldout"
+  },
+  {
+    "id": "held_unit_05",
+    "family": "unit_calc",
+    "input": "COMPUTE: 18+27*2",
+    "checker": {
+      "type": "numeric_close",
+      "expected": 72.0
+    },
+    "tags": [
+      "heldout"
+    ],
+    "subject_keys": [
+      "unit:arith"
+    ],
+    "suite": "heldout"
+  },
+  {
+    "id": "held_checklist_01",
+    "family": "safety_checklist",
+    "input": "Prepare the pre-work safety checklist for hot work welding on level 3.",
+    "checker": {
+      "type": "checklist_covers",
+      "items": [
+        "harness_inspected",
+        "edge_protection",
+        "ppe_check",
+        "permit_to_work",
+        "fire_watch"
+      ]
+    },
+    "tags": [
+      "heldout"
+    ],
+    "subject_keys": [
+      "activity:hot"
+    ],
+    "suite": "heldout"
+  },
+  {
+    "id": "held_checklist_02",
+    "family": "safety_checklist",
+    "input": "Prepare the pre-work safety checklist for parapet wall repairs.",
+    "checker": {
+      "type": "checklist_covers",
+      "items": [
+        "harness_inspected",
+        "edge_protection",
+        "ppe_check",
+        "permit_to_work"
+      ]
+    },
+    "tags": [
+      "heldout"
+    ],
+    "subject_keys": [
+      "activity:parapet"
+    ],
+    "suite": "heldout"
+  },
+  {
+    "id": "held_checklist_03",
+    "family": "safety_checklist",
+    "input": "Prepare the pre-work safety checklist for mast climber assembly.",
+    "checker": {
+      "type": "checklist_covers",
+      "items": [
+        "harness_inspected",
+        "edge_protection",
+        "ppe_check",
+        "permit_to_work"
+      ]
+    },
+    "tags": [
+      "heldout"
+    ],
+    "subject_keys": [
+      "activity:mast"
+    ],
+    "suite": "heldout"
+  },
+  {
+    "id": "held_checklist_04",
+    "family": "safety_checklist",
+    "input": "Prepare the pre-work safety checklist for excavator trench work.",
+    "checker": {
+      "type": "checklist_covers",
+      "items": [
+        "harness_inspected",
+        "edge_protection",
+        "ppe_check",
+        "permit_to_work"
+      ]
+    },
+    "tags": [
+      "heldout"
+    ],
+    "subject_keys": [
+      "activity:excavator"
+    ],
+    "suite": "heldout"
+  },
+  {
+    "id": "held_checklist_05",
+    "family": "safety_checklist",
+    "input": "Prepare the pre-work safety checklist for glazing installation.",
+    "checker": {
+      "type": "checklist_covers",
+      "items": [
+        "harness_inspected",
+        "edge_protection",
+        "ppe_check",
+        "permit_to_work"
+      ]
+    },
+    "tags": [
+      "heldout"
+    ],
+    "subject_keys": [
+      "activity:glazing"
+    ],
+    "suite": "heldout"
+  },
+  {
+    "id": "held_tender_01",
+    "family": "tender_extract",
+    "input": "Extract: TENDER T-103: deadline=2027-02-28; emd_inr=120000; eligibility=Class AA contractor",
+    "checker": {
+      "type": "fields_present",
+      "fields": [
+        "deadline",
+        "emd",
+        "eligibility"
+      ],
+      "values": {
+        "deadline": "2027-02-28",
+        "emd": "120000",
+        "eligibility": "Class AA contractor"
+      }
+    },
+    "tags": [
+      "heldout"
+    ],
+    "subject_keys": [
+      "tender:t-103"
+    ],
+    "suite": "heldout"
+  },
+  {
+    "id": "held_tender_02",
+    "family": "tender_extract",
+    "input": "Please extract the fields: TENDER T-101: deadline=2026-12-01; emd_inr=50000; eligibility=Class A contractor",
+    "checker": {
+      "type": "fields_present",
+      "fields": [
+        "deadline",
+        "emd",
+        "eligibility"
+      ],
+      "values": {
+        "deadline": "2026-12-01",
+        "emd": "50000",
+        "eligibility": "Class A contractor"
+      }
+    },
+    "tags": [
+      "heldout"
+    ],
+    "subject_keys": [
+      "tender:t-101"
+    ],
+    "suite": "heldout"
+  },
+  {
+    "id": "held_tender_03",
+    "family": "tender_extract",
+    "input": "Parse tender: TENDER T-102: deadline=2027-01-15; emd_inr=75000; eligibility=Class B contractor",
+    "checker": {
+      "type": "fields_present",
+      "fields": [
+        "deadline",
+        "emd",
+        "eligibility"
+      ],
+      "values": {
+        "deadline": "2027-01-15",
+        "emd": "75000",
+        "eligibility": "Class B contractor"
+      }
+    },
+    "tags": [
+      "heldout"
+    ],
+    "subject_keys": [
+      "tender:t-102"
+    ],
+    "suite": "heldout"
+  },
+  {
+    "id": "held_tender_04",
+    "family": "tender_extract",
+    "input": "List tender fields: TENDER T-103: deadline=2027-02-28; emd_inr=120000; eligibility=Class AA contractor",
+    "checker": {
+      "type": "fields_present",
+      "fields": [
+        "deadline",
+        "emd",
+        "eligibility"
+      ],
+      "values": {
+        "deadline": "2027-02-28",
+        "emd": "120000",
+        "eligibility": "Class AA contractor"
+      }
+    },
+    "tags": [
+      "heldout"
+    ],
+    "subject_keys": [
+      "tender:t-103"
+    ],
+    "suite": "heldout"
+  },
+  {
+    "id": "held_tender_05",
+    "family": "tender_extract",
+    "input": "Tender record: TENDER T-101: deadline=2026-12-01; emd_inr=50000; eligibility=Class A contractor",
+    "checker": {
+      "type": "fields_present",
+      "fields": [
+        "deadline",
+        "emd",
+        "eligibility"
+      ],
+      "values": {
+        "deadline": "2026-12-01",
+        "emd": "50000",
+        "eligibility": "Class A contractor"
+      }
+    },
+    "tags": [
+      "heldout"
+    ],
+    "subject_keys": [
+      "tender:t-101"
+    ],
+    "suite": "heldout"
+  }
+]

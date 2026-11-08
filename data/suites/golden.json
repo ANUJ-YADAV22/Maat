@@ -1,0 +1,770 @@
+[
+  {
+    "id": "gold_clause_01",
+    "family": "clause_query",
+    "input": "What is the min_cover_mm of cover:mild?",
+    "checker": {
+      "type": "regex",
+      "pattern": "\\bis 31\\b"
+    },
+    "tags": [
+      "golden"
+    ],
+    "subject_keys": [
+      "cover:mild"
+    ],
+    "suite": "golden"
+  },
+  {
+    "id": "gold_clause_02",
+    "family": "clause_query",
+    "input": "What is the min_cover_mm of cover:moderate?",
+    "checker": {
+      "type": "regex",
+      "pattern": "\\bis 38\\b"
+    },
+    "tags": [
+      "golden"
+    ],
+    "subject_keys": [
+      "cover:moderate"
+    ],
+    "suite": "golden"
+  },
+  {
+    "id": "gold_clause_03",
+    "family": "clause_query",
+    "input": "What is the min_spacing_mm of rebar:spacing?",
+    "checker": {
+      "type": "regex",
+      "pattern": "\\bis 73\\b"
+    },
+    "tags": [
+      "golden"
+    ],
+    "subject_keys": [
+      "rebar:spacing"
+    ],
+    "suite": "golden"
+  },
+  {
+    "id": "gold_clause_04",
+    "family": "clause_query",
+    "input": "What is the min_thickness_mm of slab:thickness?",
+    "checker": {
+      "type": "regex",
+      "pattern": "\\bis 118\\b"
+    },
+    "tags": [
+      "golden"
+    ],
+    "subject_keys": [
+      "slab:thickness"
+    ],
+    "suite": "golden"
+  },
+  {
+    "id": "gold_clause_05",
+    "family": "clause_query",
+    "input": "What is the min_dia_mm of column:diameter?",
+    "checker": {
+      "type": "regex",
+      "pattern": "\\bis 229\\b"
+    },
+    "tags": [
+      "golden"
+    ],
+    "subject_keys": [
+      "column:diameter"
+    ],
+    "suite": "golden"
+  },
+  {
+    "id": "gold_clause_06",
+    "family": "clause_query",
+    "input": "What is the min_height_mm of scaffold:guardrail?",
+    "checker": {
+      "type": "regex",
+      "pattern": "\\bis 1013\\b"
+    },
+    "tags": [
+      "golden"
+    ],
+    "subject_keys": [
+      "scaffold:guardrail"
+    ],
+    "suite": "golden"
+  },
+  {
+    "id": "gold_clause_07",
+    "family": "clause_query",
+    "input": "What is the min_height_mm of scaffold:toeboard?",
+    "checker": {
+      "type": "regex",
+      "pattern": "\\bis 148\\b"
+    },
+    "tags": [
+      "golden"
+    ],
+    "subject_keys": [
+      "scaffold:toeboard"
+    ],
+    "suite": "golden"
+  },
+  {
+    "id": "gold_clause_08",
+    "family": "clause_query",
+    "input": "What is the max_deg of ladder:angle?",
+    "checker": {
+      "type": "regex",
+      "pattern": "\\bis 74\\b"
+    },
+    "tags": [
+      "golden"
+    ],
+    "subject_keys": [
+      "ladder:angle"
+    ],
+    "suite": "golden"
+  },
+  {
+    "id": "gold_incident_01",
+    "family": "incident_triage",
+    "input": "Site report. What is the severity of incident:crane_overload?",
+    "checker": {
+      "type": "contains_all",
+      "items": [
+        "major"
+      ]
+    },
+    "tags": [
+      "golden"
+    ],
+    "subject_keys": [
+      "incident:crane_overload"
+    ],
+    "suite": "golden"
+  },
+  {
+    "id": "gold_incident_02",
+    "family": "incident_triage",
+    "input": "Supervisor note. What is the severity of incident:fire_small?",
+    "checker": {
+      "type": "contains_all",
+      "items": [
+        "moderate"
+      ]
+    },
+    "tags": [
+      "golden"
+    ],
+    "subject_keys": [
+      "incident:fire_small"
+    ],
+    "suite": "golden"
+  },
+  {
+    "id": "gold_incident_03",
+    "family": "incident_triage",
+    "input": "Daily log. What is the severity of incident:minor_cut?",
+    "checker": {
+      "type": "contains_all",
+      "items": [
+        "minor"
+      ]
+    },
+    "tags": [
+      "golden"
+    ],
+    "subject_keys": [
+      "incident:minor_cut"
+    ],
+    "suite": "golden"
+  },
+  {
+    "id": "gold_incident_04",
+    "family": "incident_triage",
+    "input": "Audit finding. What is the severity of incident:crane_overload?",
+    "checker": {
+      "type": "contains_all",
+      "items": [
+        "major"
+      ]
+    },
+    "tags": [
+      "golden"
+    ],
+    "subject_keys": [
+      "incident:crane_overload"
+    ],
+    "suite": "golden"
+  },
+  {
+    "id": "gold_incident_05",
+    "family": "incident_triage",
+    "input": "Near-miss form. What is the severity of incident:fire_small?",
+    "checker": {
+      "type": "contains_all",
+      "items": [
+        "moderate"
+      ]
+    },
+    "tags": [
+      "golden"
+    ],
+    "subject_keys": [
+      "incident:fire_small"
+    ],
+    "suite": "golden"
+  },
+  {
+    "id": "gold_incident_06",
+    "family": "incident_triage",
+    "input": "Shift handover. What is the severity of incident:minor_cut?",
+    "checker": {
+      "type": "contains_all",
+      "items": [
+        "minor"
+      ]
+    },
+    "tags": [
+      "golden"
+    ],
+    "subject_keys": [
+      "incident:minor_cut"
+    ],
+    "suite": "golden"
+  },
+  {
+    "id": "gold_incident_07",
+    "family": "incident_triage",
+    "input": "Safety walk. What is the severity of incident:crane_overload?",
+    "checker": {
+      "type": "contains_all",
+      "items": [
+        "major"
+      ]
+    },
+    "tags": [
+      "golden"
+    ],
+    "subject_keys": [
+      "incident:crane_overload"
+    ],
+    "suite": "golden"
+  },
+  {
+    "id": "gold_incident_08",
+    "family": "incident_triage",
+    "input": "Contractor report. What is the severity of incident:fire_small?",
+    "checker": {
+      "type": "contains_all",
+      "items": [
+        "moderate"
+      ]
+    },
+    "tags": [
+      "golden"
+    ],
+    "subject_keys": [
+      "incident:fire_small"
+    ],
+    "suite": "golden"
+  },
+  {
+    "id": "gold_unit_01",
+    "family": "unit_calc",
+    "input": "COMPUTE: 12*4",
+    "checker": {
+      "type": "numeric_close",
+      "expected": 48.0
+    },
+    "tags": [
+      "golden"
+    ],
+    "subject_keys": [
+      "unit:arith"
+    ],
+    "suite": "golden"
+  },
+  {
+    "id": "gold_unit_02",
+    "family": "unit_calc",
+    "input": "COMPUTE: 7*9",
+    "checker": {
+      "type": "numeric_close",
+      "expected": 63.0
+    },
+    "tags": [
+      "golden"
+    ],
+    "subject_keys": [
+      "unit:arith"
+    ],
+    "suite": "golden"
+  },
+  {
+    "id": "gold_unit_03",
+    "family": "unit_calc",
+    "input": "COMPUTE: 100/8",
+    "checker": {
+      "type": "numeric_close",
+      "expected": 12.5
+    },
+    "tags": [
+      "golden"
+    ],
+    "subject_keys": [
+      "unit:arith"
+    ],
+    "suite": "golden"
+  },
+  {
+    "id": "gold_unit_04",
+    "family": "unit_calc",
+    "input": "COMPUTE: 3.5*8+2",
+    "checker": {
+      "type": "numeric_close",
+      "expected": 30.0
+    },
+    "tags": [
+      "golden"
+    ],
+    "subject_keys": [
+      "unit:arith"
+    ],
+    "suite": "golden"
+  },
+  {
+    "id": "gold_unit_05",
+    "family": "unit_calc",
+    "input": "COMPUTE: 144/12",
+    "checker": {
+      "type": "numeric_close",
+      "expected": 12.0
+    },
+    "tags": [
+      "golden"
+    ],
+    "subject_keys": [
+      "unit:arith"
+    ],
+    "suite": "golden"
+  },
+  {
+    "id": "gold_unit_06",
+    "family": "unit_calc",
+    "input": "COMPUTE: 25+17",
+    "checker": {
+      "type": "numeric_close",
+      "expected": 42.0
+    },
+    "tags": [
+      "golden"
+    ],
+    "subject_keys": [
+      "unit:arith"
+    ],
+    "suite": "golden"
+  },
+  {
+    "id": "gold_unit_07",
+    "family": "unit_calc",
+    "input": "COMPUTE: 9*9",
+    "checker": {
+      "type": "numeric_close",
+      "expected": 81.0
+    },
+    "tags": [
+      "golden"
+    ],
+    "subject_keys": [
+      "unit:arith"
+    ],
+    "suite": "golden"
+  },
+  {
+    "id": "gold_unit_08",
+    "family": "unit_calc",
+    "input": "COMPUTE: 250-33",
+    "checker": {
+      "type": "numeric_close",
+      "expected": 217.0
+    },
+    "tags": [
+      "golden"
+    ],
+    "subject_keys": [
+      "unit:arith"
+    ],
+    "suite": "golden"
+  },
+  {
+    "id": "gold_checklist_01",
+    "family": "safety_checklist",
+    "input": "Prepare the pre-work safety checklist for scaffold erection.",
+    "checker": {
+      "type": "checklist_covers",
+      "items": [
+        "harness_inspected",
+        "edge_protection",
+        "ppe_check",
+        "permit_to_work"
+      ]
+    },
+    "tags": [
+      "golden"
+    ],
+    "subject_keys": [
+      "activity:scaffold"
+    ],
+    "suite": "golden"
+  },
+  {
+    "id": "gold_checklist_02",
+    "family": "safety_checklist",
+    "input": "Prepare the pre-work safety checklist for roof edge repairs.",
+    "checker": {
+      "type": "checklist_covers",
+      "items": [
+        "harness_inspected",
+        "edge_protection",
+        "ppe_check",
+        "permit_to_work"
+      ]
+    },
+    "tags": [
+      "golden"
+    ],
+    "subject_keys": [
+      "activity:roof"
+    ],
+    "suite": "golden"
+  },
+  {
+    "id": "gold_checklist_03",
+    "family": "safety_checklist",
+    "input": "Prepare the pre-work safety checklist for tower crane erection.",
+    "checker": {
+      "type": "checklist_covers",
+      "items": [
+        "harness_inspected",
+        "edge_protection",
+        "ppe_check",
+        "permit_to_work"
+      ]
+    },
+    "tags": [
+      "golden"
+    ],
+    "subject_keys": [
+      "activity:tower"
+    ],
+    "suite": "golden"
+  },
+  {
+    "id": "gold_checklist_04",
+    "family": "safety_checklist",
+    "input": "Prepare the pre-work safety checklist for trench excavation.",
+    "checker": {
+      "type": "checklist_covers",
+      "items": [
+        "harness_inspected",
+        "edge_protection",
+        "ppe_check",
+        "permit_to_work"
+      ]
+    },
+    "tags": [
+      "golden"
+    ],
+    "subject_keys": [
+      "activity:trench"
+    ],
+    "suite": "golden"
+  },
+  {
+    "id": "gold_checklist_05",
+    "family": "safety_checklist",
+    "input": "Prepare the pre-work safety checklist for facade cleaning.",
+    "checker": {
+      "type": "checklist_covers",
+      "items": [
+        "harness_inspected",
+        "edge_protection",
+        "ppe_check",
+        "permit_to_work"
+      ]
+    },
+    "tags": [
+      "golden"
+    ],
+    "subject_keys": [
+      "activity:facade"
+    ],
+    "suite": "golden"
+  },
+  {
+    "id": "gold_checklist_06",
+    "family": "safety_checklist",
+    "input": "Prepare the pre-work safety checklist for steel beam placement.",
+    "checker": {
+      "type": "checklist_covers",
+      "items": [
+        "harness_inspected",
+        "edge_protection",
+        "ppe_check",
+        "permit_to_work"
+      ]
+    },
+    "tags": [
+      "golden"
+    ],
+    "subject_keys": [
+      "activity:steel"
+    ],
+    "suite": "golden"
+  },
+  {
+    "id": "gold_checklist_07",
+    "family": "safety_checklist",
+    "input": "Prepare the pre-work safety checklist for formwork stripping.",
+    "checker": {
+      "type": "checklist_covers",
+      "items": [
+        "harness_inspected",
+        "edge_protection",
+        "ppe_check",
+        "permit_to_work"
+      ]
+    },
+    "tags": [
+      "golden"
+    ],
+    "subject_keys": [
+      "activity:formwork"
+    ],
+    "suite": "golden"
+  },
+  {
+    "id": "gold_checklist_08",
+    "family": "safety_checklist",
+    "input": "Prepare the pre-work safety checklist for bridge deck casting.",
+    "checker": {
+      "type": "checklist_covers",
+      "items": [
+        "harness_inspected",
+        "edge_protection",
+        "ppe_check",
+        "permit_to_work"
+      ]
+    },
+    "tags": [
+      "golden"
+    ],
+    "subject_keys": [
+      "activity:bridge"
+    ],
+    "suite": "golden"
+  },
+  {
+    "id": "gold_tender_01",
+    "family": "tender_extract",
+    "input": "Extract the tender fields from: TENDER T-102: deadline=2027-01-15; emd_inr=75000; eligibility=Class B contractor",
+    "checker": {
+      "type": "fields_present",
+      "fields": [
+        "deadline",
+        "emd",
+        "eligibility"
+      ],
+      "values": {
+        "deadline": "2027-01-15",
+        "emd": "75000",
+        "eligibility": "Class B contractor"
+      }
+    },
+    "tags": [
+      "golden"
+    ],
+    "subject_keys": [
+      "tender:t-102"
+    ],
+    "suite": "golden"
+  },
+  {
+    "id": "gold_tender_02",
+    "family": "tender_extract",
+    "input": "Pull out the key fields from: TENDER T-103: deadline=2027-02-28; emd_inr=120000; eligibility=Class AA contractor",
+    "checker": {
+      "type": "fields_present",
+      "fields": [
+        "deadline",
+        "emd",
+        "eligibility"
+      ],
+      "values": {
+        "deadline": "2027-02-28",
+        "emd": "120000",
+        "eligibility": "Class AA contractor"
+      }
+    },
+    "tags": [
+      "golden"
+    ],
+    "subject_keys": [
+      "tender:t-103"
+    ],
+    "suite": "golden"
+  },
+  {
+    "id": "gold_tender_03",
+    "family": "tender_extract",
+    "input": "Parse this tender: TENDER T-101: deadline=2026-12-01; emd_inr=50000; eligibility=Class A contractor",
+    "checker": {
+      "type": "fields_present",
+      "fields": [
+        "deadline",
+        "emd",
+        "eligibility"
+      ],
+      "values": {
+        "deadline": "2026-12-01",
+        "emd": "50000",
+        "eligibility": "Class A contractor"
+      }
+    },
+    "tags": [
+      "golden"
+    ],
+    "subject_keys": [
+      "tender:t-101"
+    ],
+    "suite": "golden"
+  },
+  {
+    "id": "gold_tender_04",
+    "family": "tender_extract",
+    "input": "Read the tender and list fields: TENDER T-102: deadline=2027-01-15; emd_inr=75000; eligibility=Class B contractor",
+    "checker": {
+      "type": "fields_present",
+      "fields": [
+        "deadline",
+        "emd",
+        "eligibility"
+      ],
+      "values": {
+        "deadline": "2027-01-15",
+        "emd": "75000",
+        "eligibility": "Class B contractor"
+      }
+    },
+    "tags": [
+      "golden"
+    ],
+    "subject_keys": [
+      "tender:t-102"
+    ],
+    "suite": "golden"
+  },
+  {
+    "id": "gold_tender_05",
+    "family": "tender_extract",
+    "input": "Summarise tender fields from: TENDER T-103: deadline=2027-02-28; emd_inr=120000; eligibility=Class AA contractor",
+    "checker": {
+      "type": "fields_present",
+      "fields": [
+        "deadline",
+        "emd",
+        "eligibility"
+      ],
+      "values": {
+        "deadline": "2027-02-28",
+        "emd": "120000",
+        "eligibility": "Class AA contractor"
+      }
+    },
+    "tags": [
+      "golden"
+    ],
+    "subject_keys": [
+      "tender:t-103"
+    ],
+    "suite": "golden"
+  },
+  {
+    "id": "gold_tender_06",
+    "family": "tender_extract",
+    "input": "Get deadline, emd and eligibility from: TENDER T-101: deadline=2026-12-01; emd_inr=50000; eligibility=Class A contractor",
+    "checker": {
+      "type": "fields_present",
+      "fields": [
+        "deadline",
+        "emd",
+        "eligibility"
+      ],
+      "values": {
+        "deadline": "2026-12-01",
+        "emd": "50000",
+        "eligibility": "Class A contractor"
+      }
+    },
+    "tags": [
+      "golden"
+    ],
+    "subject_keys": [
+      "tender:t-101"
+    ],
+    "suite": "golden"
+  },
+  {
+    "id": "gold_tender_07",
+    "family": "tender_extract",
+    "input": "Extract fields: TENDER T-102: deadline=2027-01-15; emd_inr=75000; eligibility=Class B contractor",
+    "checker": {
+      "type": "fields_present",
+      "fields": [
+        "deadline",
+        "emd",
+        "eligibility"
+      ],
+      "values": {
+        "deadline": "2027-01-15",
+        "emd": "75000",
+        "eligibility": "Class B contractor"
+      }
+    },
+    "tags": [
+      "golden"
+    ],
+    "subject_keys": [
+      "tender:t-102"
+    ],
+    "suite": "golden"
+  },
+  {
+    "id": "gold_tender_08",
+    "family": "tender_extract",
+    "input": "Tender intake: TENDER T-103: deadline=2027-02-28; emd_inr=120000; eligibility=Class AA contractor",
+    "checker": {
+      "type": "fields_present",
+      "fields": [
+        "deadline",
+        "emd",
+        "eligibility"
+      ],
+      "values": {
+        "deadline": "2027-02-28",
+        "emd": "120000",
+        "eligibility": "Class AA contractor"
+      }
+    },
+    "tags": [
+      "golden"
+    ],
+    "subject_keys": [
+      "tender:t-103"
+    ],
+    "suite": "golden"
+  }
+]

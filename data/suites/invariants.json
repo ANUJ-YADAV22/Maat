@@ -1,0 +1,155 @@
+[
+  {
+    "id": "inv_01",
+    "family": "safety_checklist",
+    "input": "Prepare the pre-work safety checklist for scaffold work.",
+    "checker": {
+      "type": "checklist_covers",
+      "items": [
+        "harness_inspected",
+        "edge_protection",
+        "ppe_check",
+        "permit_to_work"
+      ]
+    },
+    "tags": [
+      "invariant"
+    ],
+    "subject_keys": [
+      "activity:scaffold"
+    ],
+    "suite": "invariants"
+  },
+  {
+    "id": "inv_02",
+    "family": "safety_checklist",
+    "input": "Prepare the pre-work safety checklist for crane lift.",
+    "checker": {
+      "type": "checklist_covers",
+      "items": [
+        "harness_inspected",
+        "edge_protection",
+        "ppe_check",
+        "permit_to_work"
+      ]
+    },
+    "tags": [
+      "invariant"
+    ],
+    "subject_keys": [
+      "activity:crane"
+    ],
+    "suite": "invariants"
+  },
+  {
+    "id": "inv_03",
+    "family": "safety_checklist",
+    "input": "Prepare the pre-work safety checklist for roof work.",
+    "checker": {
+      "type": "checklist_covers",
+      "items": [
+        "harness_inspected",
+        "edge_protection",
+        "ppe_check",
+        "permit_to_work"
+      ]
+    },
+    "tags": [
+      "invariant"
+    ],
+    "subject_keys": [
+      "activity:roof"
+    ],
+    "suite": "invariants"
+  },
+  {
+    "id": "inv_04",
+    "family": "clause_query",
+    "input": "What is the min_cover_mm of cover:mild?",
+    "checker": {
+      "type": "tool_called",
+      "tool": "clause_lookup"
+    },
+    "tags": [
+      "invariant"
+    ],
+    "subject_keys": [
+      "cover:mild"
+    ],
+    "suite": "invariants"
+  },
+  {
+    "id": "inv_05",
+    "family": "clause_query",
+    "input": "What is the max_deg of ladder:angle?",
+    "checker": {
+      "type": "tool_called",
+      "tool": "clause_lookup"
+    },
+    "tags": [
+      "invariant"
+    ],
+    "subject_keys": [
+      "ladder:angle"
+    ],
+    "suite": "invariants"
+  },
+  {
+    "id": "inv_06",
+    "family": "tender_extract",
+    "input": "Extract: TENDER T-101: deadline=2026-12-01; emd_inr=50000; eligibility=Class A contractor",
+    "checker": {
+      "type": "fields_present",
+      "fields": [
+        "deadline",
+        "emd",
+        "eligibility"
+      ]
+    },
+    "tags": [
+      "invariant"
+    ],
+    "subject_keys": [
+      "tender:t-101"
+    ],
+    "suite": "invariants"
+  },
+  {
+    "id": "inv_07",
+    "family": "tender_extract",
+    "input": "Extract: TENDER T-102: deadline=2027-01-15; emd_inr=75000; eligibility=Class B contractor",
+    "checker": {
+      "type": "fields_present",
+      "fields": [
+        "deadline",
+        "emd",
+        "eligibility"
+      ]
+    },
+    "tags": [
+      "invariant"
+    ],
+    "subject_keys": [
+      "tender:t-102"
+    ],
+    "suite": "invariants"
+  },
+  {
+    "id": "inv_08",
+    "family": "safety_checklist",
+    "input": "Prepare the pre-work safety checklist for roof edge work.",
+    "checker": {
+      "type": "checklist_covers",
+      "items": [
+        "harness_inspected"
+      ]
+    },
+    "tags": [
+      "invariant"
+    ],
+    "subject_keys": [
+      "activity:roof"
+    ],
+    "suite": "invariants"
+  }
+]

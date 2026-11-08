@@ -1,0 +1,175 @@
+{
+  "version": 1,
+  "memory": [
+    {
+      "id": "m_001",
+      "subject": "cover:mild",
+      "attribute": "min_cover_mm",
+      "value": 31,
+      "text": "cover:mild min_cover_mm is 31",
+      "source_patch": null,
+      "protected": false
+    },
+    {
+      "id": "m_002",
+      "subject": "cover:moderate",
+      "attribute": "min_cover_mm",
+      "value": 38,
+      "text": "cover:moderate min_cover_mm is 38",
+      "source_patch": null,
+      "protected": false
+    },
+    {
+      "id": "m_003",
+      "subject": "rebar:spacing",
+      "attribute": "min_spacing_mm",
+      "value": 73,
+      "text": "rebar:spacing min_spacing_mm is 73",
+      "source_patch": null,
+      "protected": false
+    },
+    {
+      "id": "m_004",
+      "subject": "slab:thickness",
+      "attribute": "min_thickness_mm",
+      "value": 118,
+      "text": "slab:thickness min_thickness_mm is 118",
+      "source_patch": null,
+      "protected": false
+    },
+    {
+      "id": "m_005",
+      "subject": "column:diameter",
+      "attribute": "min_dia_mm",
+      "value": 229,
+      "text": "column:diameter min_dia_mm is 229",
+      "source_patch": null,
+      "protected": false
+    },
+    {
+      "id": "m_006",
+      "subject": "scaffold:guardrail",
+      "attribute": "min_height_mm",
+      "value": 1013,
+      "text": "scaffold:guardrail min_height_mm is 1013",
+      "source_patch": null,
+      "protected": false
+    },
+    {
+      "id": "m_007",
+      "subject": "scaffold:toeboard",
+      "attribute": "min_height_mm",
+      "value": 148,
+      "text": "scaffold:toeboard min_height_mm is 148",
+      "source_patch": null,
+      "protected": false
+    },
+    {
+      "id": "m_008",
+      "subject": "ladder:angle",
+      "attribute": "max_deg",
+      "value": 74,
+      "text": "ladder:angle max_deg is 74",
+      "source_patch": null,
+      "protected": false
+    },
+    {
+      "id": "m_009",
+      "subject": "incident:crane_overload",
+      "attribute": "severity",
+      "value": "major",
+      "text": "incident:crane_overload severity is major",
+      "source_patch": null,
+      "protected": false
+    },
+    {
+      "id": "m_010",
+      "subject": "incident:fire_small",
+      "attribute": "severity",
+      "value": "moderate",
+      "text": "incident:fire_small severity is moderate",
+      "source_patch": null,
+      "protected": false
+    },
+    {
+      "id": "m_011",
+      "subject": "incident:minor_cut",
+      "attribute": "severity",
+      "value": "minor",
+      "text": "incident:minor_cut severity is minor",
+      "source_patch": null,
+      "protected": false
+    }
+  ],
+  "rules": [
+    {
+      "id": "r_001",
+      "text": "Always call clause_lookup for clause questions.",
+      "applies_to": [
+        "clause_query"
+      ],
+      "protected": true
+    },
+    {
+      "id": "r_002",
+      "text": "All four checklist items are mandatory on every checklist.",
+      "applies_to": [
+        "safety_checklist"
+      ],
+      "protected": true
+    },
+    {
+      "id": "r_003",
+      "text": "Answer concisely.",
+      "applies_to": [],
+      "protected": false
+    }
+  ],
+  "tool_policy": {
+    "clause_query": {
+      "require": [
+        "clause_lookup"
+      ],
+      "ground": [],
+      "order": [
+        "clause_lookup",
+        "calculator"
+      ]
+    },
+    "unit_calc": {
+      "require": [
+        "calculator"
+      ],
+      "ground": [],
+      "order": [
+        "calculator"
+      ]
+    }
+  },
+  "workflow": {
+    "clause_query": [
+      "retrieve",
+      "lookup_clause",
+      "final"
+    ],
+    "incident_triage": [
+      "retrieve",
+      "final"
+    ],
+    "safety_checklist": [
+      "ask_harness_inspected",
+      "ask_edge_protection",
+      "ask_ppe",
+      "ask_permit"
+    ],
+    "unit_calc": [
+      "compute",
+      "final"
+    ],
+    "tender_extract": [
+      "extract_deadline",
+      "extract_emd",
+      "extract_eligibility"
+    ]
+  }
+}
