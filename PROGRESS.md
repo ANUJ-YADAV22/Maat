@@ -42,3 +42,10 @@
 - 159 unit/integration tests + 17 scenarios pass; strict typecheck and production build pass.
 - Fixed a real determinism bug found by the scenario tests: same-second events were ordered by random ids; all processing now follows insertion order (regression test added).
 - Not verified in a real browser (none installable here): open it and check the visuals before recording.
+
+## Phase 6: evaluation harness (done)
+- Six systems (S0-S5), six simulated personas, oracle, metrics, ablations (single and combined), FAR/FRR sweep, plots, attack table, report and summary.json for the dashboard.
+- First run exposed real defects (S5 adopted 0/130): unpaired Lock 5 replays, strict witness threshold under noise, over-eager rejection ledger, oracle wiring. All fixed and disclosed in the report.
+- Full run (10 seeds, 10 rounds, mock backend, 672 s): held-out success S5 0.884, S4 0.860 (paired diff 0.024 +- 0.009), S3 0.648, S2 0.564, S1 0.544, S0 0.596; bad-patch acceptance S5 0.000, S4 0.112, S3 0.499, S2 0.847, S1 0.997; S5 blocks 35% of good (mostly unverifiable) patches; honest-user satisfaction S5 0.716 vs S4 0.778 (the price of safety).
+- Only Warrant shows marginal value in ablations; other locks overlap on this attack mix (reported as such).
+- 170 unit/integration tests + 17 scenarios pass; lint clean.

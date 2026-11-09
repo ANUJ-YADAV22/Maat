@@ -61,6 +61,7 @@ class MockBackend:
 
     def __init__(self, noise: float = 0.0) -> None:
         self.noise = noise
+        self.cache_tag = f"mock:{noise}"  # replay-cache namespace: noise changes answers
 
     # ---------------------------------------------------------------- parsing
     @staticmethod

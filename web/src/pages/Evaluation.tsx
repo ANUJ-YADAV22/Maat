@@ -72,9 +72,9 @@ export default function Evaluation() {
             <CardHead title="Ablation: held-out success when a lock is removed" />
             <div style={{ height: 250 }}>
               <ResponsiveContainer>
-                <BarChart data={abl} layout="vertical" margin={{ left: 40 }}>
+                <BarChart data={abl} layout="vertical" margin={{ left: 60 }}>
                   <CartesianGrid stroke="rgba(255,255,255,.06)" horizontal={false} />
-                  <XAxis type="number" domain={[0, 1]} {...axis} /><YAxis type="category" dataKey="name" width={130} {...axis} /><Tooltip {...tip} />
+                  <XAxis type="number" domain={[0, 1]} {...axis} /><YAxis type="category" dataKey="name" width={210} {...axis} /><Tooltip {...tip} />
                   <Bar dataKey="v" fill="#e9bd57" radius={[0, 6, 6, 0]} />
                 </BarChart>
               </ResponsiveContainer>

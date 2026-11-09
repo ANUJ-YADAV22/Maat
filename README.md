@@ -19,7 +19,8 @@ make install
 | `make lint` | ruff check + format check | Phase 0 |
 | `make test` | unit + integration tests | Phase 0 |
 | `make scenarios` | the six demo scenarios (1-3 built) | Phase 3 |
-| `make eval-smoke` / `make eval` | evaluation harness | Phase 6 |
+| `make eval-smoke` | evaluation, 3 seeds x 5 rounds (about 90 s) | Phase 6 |
+| `make eval` | full evaluation, 10 seeds x 10 rounds (about 12 min) | Phase 6 |
 | `make web` | build the React dashboard into web/dist | Phase 5 |
 | `make demo` | seed data, start API + worker, serve the dashboard at http://127.0.0.1:8000/app/ | Phase 5 |
 
@@ -33,6 +34,8 @@ make install
 | Safety gate Locks 1-4, decision engine, trust service, rejection ledger, human queue, scenarios 1-3 | Built |
 | Lock 5 (probes, noise floor, scope veto), conflicts, blame localization, scenarios 4-8 | Built |
 | Worker, explanations, Patch Passports, React + TypeScript dashboard | Built (UI not yet viewed in a browser) |
-| Evaluation harness, Ollama backend, cost script, docs polish | Not started (Phases 6-8) |
+| Evaluation harness: six systems, six simulated personas, ablations, FAR/FRR, plots, report | Built; results in results/ |
+| Ollama backend, LLM proposer, cost script, real-model run | Not started (Phase 7) |
+| Docs polish, demo script | Not started (Phase 8) |
 
 All simulated users and satisfaction numbers are labelled simulated. The knowledge base is synthetic.

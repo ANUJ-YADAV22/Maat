@@ -12,6 +12,8 @@ results/*
 !results/.gitkeep
 !results/report.md
 !results/attack_table.md
+!results/summary.json
+!results/*.png
 web/node_modules/
 web/dist/
 maat_demo.db*

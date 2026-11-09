@@ -113,6 +113,9 @@ def build_env(
     *,
     db_path: str | None = None,
     backend: LLMBackend | None = None,
+    disabled_locks: frozenset[str] = frozenset(),
+    trust_enabled: bool = True,
+    shared_cache: dict[str, dict[str, Any]] | None = None,
 ) -> Env:
     s = settings or Settings()
     repo = Repo(connect(db_path if db_path is not None else s.db_path))
@@ -122,5 +125,16 @@ def build_env(
     charter = load_charter(data / "charter.yaml")
     agent = Agent(backend or MockBackend(), kb)
     trust = TrustService(repo, s)
-    gate = GateRunner(repo, kb, charter, s, agent, trust, data)
+    gate = GateRunner(
+        repo,
+        kb,
+        charter,
+        s,
+        agent,
+        trust,
+        data,
+        disabled_locks=disabled_locks,
+        trust_enabled=trust_enabled,
+        shared_cache=shared_cache,
+    )
     return Env(s, repo, kb, charter, agent, trust, FeedbackCollector(repo, s), gate)

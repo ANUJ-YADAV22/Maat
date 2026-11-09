@@ -140,3 +140,32 @@
     serves the bundle and every asset, a test that every endpoint the UI calls exists, and a check
     that response shapes match the TypeScript types. Visual polish has NOT been checked in a real
     browser; do that before recording.
+54. **Lock 5 compares paired replays.** Patched and base answers are compared at the *same*
+    seeds (common random numbers); the A/A replays on other seeds only estimate each probe's own
+    instability p_i. The spec's "differs from the base modal output" let seed noise masquerade as
+    a behaviour change: the first smoke run adopted 0 of 130 patches because of it.
+55. **Witness threshold 0.6, not 0.8.** One noisy replay in three failed correct patches. Base pass
+    rate must still be <= 0.2. Thresholds were adjusted after seeing eval results (development
+    run, disclosed in the report), not tuned on a blind test.
+56. **Ledger scope.** The rejection ledger only records rejections about the claim itself (Screen,
+    Warrant, Invariants, human). Witness, impact and statistical rejections are about a patch or
+    a measurement, and remembering them blocked correct claims forever.
+57. **Evaluation design.** Six personas emit event streams that depend only on (seed, round), so
+    all systems face identical users (paired comparison). Systems share the front end (collector,
+    clustering, proposer, blame) and differ only in acceptance logic. The oracle labels *patches*
+    from ground truth: KB, charter, and six "frontier" subjects the KB lacks (claims no lookup can
+    verify). Without the frontier set the Warrant lock would simply look answers up, flattering S5.
+58. **No human in the loop in the simulation.** Quarantined patches count as not adopted, so
+    S5's good-patch rejection includes correct but unverifiable claims awaiting review. That is the
+    honest price of safety, reported rather than hidden.
+59. **S3 is a stand-in.** The "LLM judge" is a deterministic plausibility heuristic (surface
+    features, citations, injection and unsafe-wording checks, repeated claims). S3 numbers
+    describe that heuristic, not a specific model. A real judge model is a Phase 7 option.
+60. **Bundled attacks.** A claim carrying both a fact and a rule becomes a two-op patch (fact +
+    rule) in the rule-based proposer, so the silent-regression attack exists in the simulation.
+61. **Shared replay cache.** Replay results are cached in-process across systems and ablation
+    variants (key: backend tag incl. noise, config hash, test id, seed). Identical configs reuse
+    work; nothing else is shared.
+62. **Ablations.** Leave-one-out for Screen, Warrant, Invariants, Impact, Trust, plus Warrant
+    removed together with each other lock (single removals are masked by overlap). Rollout and
+    rollback ablations are not run because those are [STRETCH] items not built.

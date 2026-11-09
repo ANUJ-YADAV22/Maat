@@ -26,6 +26,7 @@ from maat.store.versions import VersionError
 from maat.suites import load_suite
 from maat.trust.service import TrustService
 
+CLAIM_LOCKS = {"screen", "warrant", "invariants"}
 LOCKS = [
     ("screen", screen),
     ("warrant", warrant),
@@ -70,15 +71,20 @@ class GateRunner:
         agent: Agent,
         trust: TrustService,
         data_dir: Path,
+        *,
+        disabled_locks: frozenset[str] = frozenset(),
+        trust_enabled: bool = True,
+        shared_cache: dict[str, dict[str, Any]] | None = None,
     ) -> None:
         self.repo, self.kb, self.charter, self.settings = repo, kb, charter, settings
-        self.trust = trust
+        self.trust, self.disabled, self.trust_enabled = trust, disabled_locks, trust_enabled
         self.ctx = GateContext(
             repo=repo,
             kb=kb,
             charter=charter,
             settings=settings,
-            replayer=Replayer(agent, repo),
+            replayer=Replayer(agent, repo, shared_cache),
+            trust_enabled=trust_enabled,
             trust=trust,
             golden=load_suite(data_dir, "golden"),
             invariants=load_suite(data_dir, "invariants"),
@@ -141,6 +147,8 @@ class GateRunner:
 
         results: list[tuple[str, LockResult]] = []
         for name, lock in LOCKS:
+            if name in self.disabled:  # ablation only; never set in a real deployment
+                continue
             res = lock.run(patch, ctx)
             repo.log_gate_run(patch_id, name, res.status, res.metrics, res.reasons)
             results.append((name, res))
@@ -176,9 +184,9 @@ class GateRunner:
             )
         domain = domain_for(patch.witness_test.family, patch.claim.subject, self.kb)
         users = repo.patch_users(patch_id)
-        e_trust = (
-            (sum(self.trust.expected(u, domain) for u in users) / len(users)) if users else 0.5
-        )
+        e_trust = 0.5
+        if users and self.trust_enabled:
+            e_trust = sum(self.trust.expected(u, domain) for u in users) / len(users)
         dec = decision_mod.decide(
             results, gain, harm, patch.risk_tier, e_trust, self.settings, patch_id
         )
@@ -268,7 +276,8 @@ class GateRunner:
         elif dec.outcome == "reject":
             repo.set_patch_status(pid, "rejected")
             already = any(r.metrics.get("ledger_count") for _, r in results)
-            if not already:
+            # only remember rejections about the claim itself, not statistical or scope flukes
+            if not already and dec.deciding_lock in CLAIM_LOCKS:
                 repo.ledger_bump(
                     patch.claim.claim_hash(), "; ".join(dec.reasons)[:300], dec.deciding_lock
                 )
@@ -285,6 +294,8 @@ class GateRunner:
         return GateOutcome(pid, dec.outcome, dec.deciding_lock, dec.reasons, dec.metrics, version)
 
     def _trust(self, users: list[str], domain: str, outcome: str, tier: str) -> None:
+        if not self.trust_enabled:
+            return
         for u in users:
             self.trust.update(u, domain, outcome, tier)
 

@@ -2,13 +2,11 @@
 
 Noise floor (A/A): replay every probe on the base config with several seeds to estimate each
 probe's own instability p_i. A probe counts as changed only if patched replays differ from the
-base modal output more often than max(tau, p_i + margin). Any changed probe outside the declared
-scope is an absolute veto. Too little coverage is inconclusive, never an automatic pass.
+base replay at the same seed more often than max(tau, p_i + margin). Any changed probe outside
+the declared scope is an absolute veto. Too little coverage is inconclusive, never a pass.
 """
 
 from __future__ import annotations
-
-from collections import Counter
 
 from maat.config_model import config_hash
 from maat.contracts import PatchContract
@@ -25,13 +23,15 @@ def run(patch: PatchContract, ctx: GateContext) -> LockResult:
     floors: list[float] = []
     for pr in probes:
         task = pr.task()
-        base = [rp.answer(task, ctx.base_config, hb, sd) for sd in aa_seeds]
-        pairs = [(a, b) for i, a in enumerate(base) for b in base[i + 1 :]]
+        aa = [rp.answer(task, ctx.base_config, hb, sd) for sd in aa_seeds]
+        pairs = [(a, b) for i, a in enumerate(aa) for b in aa[i + 1 :]]
         p_i = sum(a != b for a, b in pairs) / len(pairs) if pairs else 0.0
         floors.append(p_i)
-        modal = Counter(base).most_common(1)[0][0]
-        new = [rp.answer(task, ctx.patched_config, hp, sd) for sd in ctx.seeds]
-        frac = sum(o != modal for o in new) / len(new)
+        # Paired comparison at the SAME seeds: seed-determined noise cancels, so only a real
+        # behavioural change counts as a difference.
+        base_k = [rp.answer(task, ctx.base_config, hb, sd) for sd in ctx.seeds]
+        new_k = [rp.answer(task, ctx.patched_config, hp, sd) for sd in ctx.seeds]
+        frac = sum(a != b for a, b in zip(base_k, new_k, strict=True)) / len(new_k)
         if frac > max(s.tau, p_i + s.margin):
             changed.append(pr)
 

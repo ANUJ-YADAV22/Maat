@@ -256,6 +256,10 @@ class RuleBasedProposer:
         ids: tuple[str, ...],
     ) -> ProposalResult:
         raw = evs[0]["claim_json"]
+        if raw.get("rule_text") and all(
+            raw.get(k) is not None for k in ("subject", "attribute", "value")
+        ):
+            return self._bundle(raw, evs, tasks, config, ids)
         if raw.get("rule_text"):
             return self._rule(raw, evs, tasks, ids)
         return self._memory(raw, evs, tasks, config, ids)
@@ -317,6 +321,44 @@ class RuleBasedProposer:
             [f"kb:{claim.subject}/{claim.attribute}"],
         )
         item["source_patch"] = patch.patch_id
+        return ProposalResult(patch, "", ids)
+
+    def _bundle(
+        self,
+        raw: dict[str, Any],
+        evs: list[dict[str, Any]],
+        tasks: dict[str, dict[str, Any]],
+        config: dict[str, Any],
+        ids: tuple[str, ...],
+    ) -> ProposalResult:
+        """A factual correction that also carries a rule: two ops, one witness (the fact)."""
+        fact = {k: raw[k] for k in ("subject", "attribute", "value")}
+        mem = self._memory(fact, evs, tasks, config, ids)
+        if mem.patch is None:
+            return mem
+        base = mem.patch
+        digest = hashlib.sha256(base.claim.normalized_key().encode()).hexdigest()[:6]
+        rule = {
+            "id": f"r_{digest}",
+            "text": raw["rule_text"],
+            "applies_to": raw.get("applies_to") or [base.witness_test.family],
+            "protected": False,
+        }
+        ops = [*base.ops, Op(op="add", path=f"rules/{rule['id']}", value=rule)]
+        claim = base.claim.model_copy(update={"rule_text": raw["rule_text"]})
+        tier = provisional_tier("instruction_rule", base.witness_test.family, raw["rule_text"])
+        patch = build_patch(
+            "memory_note",
+            ops,
+            claim,
+            base.witness_test,
+            base.declared_scope,
+            list(ids),
+            self.name,
+            tier,
+            base.expiry.depends_on,
+        )
+        patch.ops[0].value["source_patch"] = patch.patch_id
         return ProposalResult(patch, "", ids)
 
     def _rule(

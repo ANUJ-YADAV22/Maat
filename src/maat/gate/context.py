@@ -30,9 +30,12 @@ class LockResult:
 class Replayer:
     """Runs tasks against configs and caches pass/fail by (backend, config_hash, test_id, seed)."""
 
-    def __init__(self, agent: Agent, repo: Repo) -> None:
-        self.agent, self.repo = agent, repo
-        self.backend = getattr(agent.backend, "name", "unknown")
+    def __init__(
+        self, agent: Agent, repo: Repo, shared: dict[str, dict[str, Any]] | None = None
+    ) -> None:
+        self.agent, self.repo, self.shared = agent, repo, shared
+        name = getattr(agent.backend, "name", "unknown")
+        self.backend = getattr(agent.backend, "cache_tag", name)
         self.runs = self.cache_hits = self.tokens_in = self.tokens_out = 0
         self.seconds = 0.0
 
@@ -41,7 +44,7 @@ class Replayer:
     ) -> dict[str, Any]:
         t = task.model_dump() if isinstance(task, SuiteTask) else task
         key = f"{self.backend}|{chash}|{t['id']}|{seed}"
-        hit = self.repo.cache_get(key)
+        hit = self.shared.get(key) if self.shared is not None else self.repo.cache_get(key)
         if hit is not None:
             self.cache_hits += 1
             return hit
@@ -54,7 +57,10 @@ class Replayer:
         self.tokens_in += out["tokens_in"]
         self.tokens_out += out["tokens_out"]
         result = {"passed": ok, "answer": out["answer"]}
-        self.repo.cache_put(key, result)
+        if self.shared is not None:
+            self.shared[key] = result
+        else:
+            self.repo.cache_put(key, result)
         return result
 
     def passed(
@@ -96,6 +102,7 @@ class GateContext:
     trust: TrustService
     golden: list[SuiteTask]
     invariants: list[SuiteTask]
+    trust_enabled: bool = True
     base_config: dict[str, Any] = field(default_factory=dict)
     patched_config: dict[str, Any] = field(default_factory=dict)
 

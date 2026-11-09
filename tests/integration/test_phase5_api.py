@@ -50,8 +50,8 @@ def test_background_worker_adopts_without_any_gate_call() -> None:
         assert c.get("/overview").json()["worker"] is True
 
 
-def test_overview_kb_trust_tasks_explain_passport() -> None:
-    c = mk()
+def test_overview_kb_trust_tasks_explain_passport(tmp_path) -> None:
+    c = mk(results_dir=tmp_path)  # empty: no evaluation has been run here
     correct(c)
     c.post("/proposals/run")
     c.post("/gate/run")
@@ -127,3 +127,27 @@ def test_cors_allows_the_dev_frontend(path) -> None:
     c = mk()
     r = c.get(path, headers={"Origin": "http://localhost:5173"})
     assert r.headers["access-control-allow-origin"] == "http://localhost:5173"
+
+
+def test_eval_summary_endpoint_serves_real_results(tmp_path) -> None:
+    (tmp_path / "summary.json").write_text('{"backend": "mock", "simulated": true, "rounds": 2}')
+    c = mk(results_dir=tmp_path)
+    body = c.get("/eval/summary").json()
+    assert body == {"available": True, "backend": "mock", "simulated": True, "rounds": 2}
+
+
+def test_committed_results_match_what_the_dashboard_expects() -> None:
+    """If a real evaluation run is present, its summary has every field the UI reads."""
+    import json
+    from pathlib import Path
+
+    path = Path(__file__).resolve().parents[2] / "results" / "summary.json"
+    if not path.exists():
+        pytest.skip("no evaluation results generated yet (make eval-smoke)")
+    s = json.loads(path.read_text())
+    assert s["simulated"] is True and {"S0", "S5"} <= set(s["improvement"]["series"])
+    n = len(s["improvement"]["rounds"])
+    for p in s["improvement"]["series"].values():
+        assert len(p["mean"]) == len(p["se"]) == n
+    assert {"bad_patch_acceptance", "regression_rate"} <= set(s["attack"]["S5"])
+    assert s["ablation"]["Full Maat (S5)"] > 0 and s["far_frr"]

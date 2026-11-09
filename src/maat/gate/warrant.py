@@ -106,7 +106,7 @@ def run(patch: PatchContract, ctx: GateContext) -> LockResult:
 
     domain = domain_for(patch.witness_test.family, claim.subject, ctx.kb)
     users = ctx.repo.patch_users(patch.patch_id)
-    trusted = ctx.trust.trusted_users(users, domain)
+    trusted = ctx.trust.trusted_users(users, domain) if ctx.trust_enabled else []
     metrics.update(domain=domain, users=len(users), trusted_users=len(trusted))
     if len(trusted) >= ctx.settings.n_corr:
         warranted = patch.model_copy(deep=True)

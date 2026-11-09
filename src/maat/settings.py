@@ -74,7 +74,7 @@ class Settings(BaseSettings):
 
     # Witness lock
     witness_base_max_pass: float = 0.2
-    witness_patched_min_pass: float = 0.8
+    witness_patched_min_pass: float = 0.6
     n_paraphrases: int = 5
 
 
