@@ -9,7 +9,7 @@ const paths = [
 ]
 
 export default defineConfig({
-  base: '/app/',
+  base: process.env.VITE_BASE_PATH || '/app/',
   plugins: [react()],
   server: {
     port: 5173,
